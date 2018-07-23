@@ -1,7 +1,5 @@
 {
   "name": "druidjs",
-  "version": "0.2.0",
-  "main": "main.js",
   "license": "MIT",
   "files": [
     "dist",

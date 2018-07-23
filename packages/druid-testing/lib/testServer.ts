@@ -1,4 +1,4 @@
-import { normalizeOptions } from '@druidjs/app/dist/'
+import { normalizeOptions } from '@druidjs/app/dist/druid'
 import initContext from '@druidjs/app/dist/context/'
 import initDb from '@druidjs/app/dist/context/db'
 import initProxyRequest from './proxyRequest'

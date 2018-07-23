@@ -1,0 +1,22 @@
+{
+  "name": "druidjs",
+  "version": "0.2.0",
+  "main": "main.js",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "main.js"
+  ],
+  "scripts": {
+    "compile": "tsc",
+    "prepublish": "npm run compile && npm version patch"
+  },
+  "devDependencies": {
+    "apollo-server": "^2.0.0"
+  },
+  "dependencies": {
+    "fast-glob": "^2.2.2",
+    "jsonwebtoken": "^8.3.0",
+    "merge-graphql-schemas": "^1.5.3"
+  }
+}

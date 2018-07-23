@@ -1,6 +1,8 @@
 {
   "name": "druidjs",
   "license": "MIT",
+  "repository": "https://github.com/alidcastano/druid.js",
+  "author": "Alid Castano",
   "files": [
     "dist",
     "main.js"

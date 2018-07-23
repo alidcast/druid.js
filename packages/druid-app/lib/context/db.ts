@@ -15,9 +15,15 @@ function loadModels (connection, modelsPath: string) {
   findFiles(modelsPath).forEach((modelPath: string) => {
     const modelName = getDirNameFromPath(modelPath)
     const Model = importFile(modelPath).default 
-    // bind database connection to each model
-    // this allows us to support multiple databases and testing transactions)
-    models[modelName] = Model.bindTransaction(connection)
+
+    let modelClass 
+    try {
+      modelClass = Model.bindTransaction(connection)
+    } catch (err) {
+      console.log('Error while loading models' + err)
+    }
+  
+    models[modelName] = modelClass
   })
   return models 
 }

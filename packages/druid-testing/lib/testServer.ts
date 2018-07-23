@@ -12,22 +12,17 @@ export class TestServer {
 
   private static async initProxyDb(connection, options) {
     const trx = await transaction.start(connection)
-    // pass custom database connection as a transaction so that we can rollback all operations
-    const db = initDb(connection, options) as any
+    // pass trx as database connection so that we can rollback all operations
+    const db = initDb(trx, options) as any
     db._trx = trx
     db._conn = connection
     return db
   }
 
-  private static async initProxyApp(druid, db) {
-    const customContext = ({ req }) => initContext(req, null, druid.options, { db })
-    return druid.create(customContext)
-  }
-
   public async init (userOptions = {}) {  
     const druid = getDruidInstance(userOptions)
     const db = this.db = await TestServer.initProxyDb(druid.connection, druid.options)
-    const app = this.app = await TestServer.initProxyApp(druid, { db })
+    const app = this.app = druid.create({ db })
     this.request = initProxyRequest(app)
   }
 

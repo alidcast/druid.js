@@ -1,6 +1,6 @@
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
 import { makeExecutableSchema } from 'graphql-tools'
-import { findFiles, importFile, getNameFromPath } from './utils'
+import { findFiles, importFile } from './utils'
 
 export default function schemaLoader (options) {
   const { modulePaths } = options  
@@ -18,16 +18,24 @@ export default function schemaLoader (options) {
     ...fileLoader(modulePaths.resolvers, { recursive: true })
   ])
 
-  return makeExecutableSchema(schema)
+  let gqlSchema
+  try {
+    gqlSchema = makeExecutableSchema(schema)
+  } catch (err) {
+    console.log('Error while loading your schema' + err)
+  }
+  return gqlSchema
 }
 
 function loadScalars (scalarsPath: string): { typeDefs: Array<string>, resolvers: object } {
   const typeDefs = []
   const resolvers = {}
   findFiles(scalarsPath).forEach((scalarPath : any) => {
-    const scalarName = getNameFromPath(scalarPath)
-    typeDefs.push(`scalar ${scalarName}`)
-    resolvers[scalarName] = importFile(scalarPath).default
+    const scalars = importFile(scalarPath)
+    Object.keys(scalars).forEach(scalarName => {
+      typeDefs.push(`scalar ${scalarName}`)
+      resolvers[scalarName] = scalars[scalarName]
+    })
   })
   return { typeDefs, resolvers }
 }

@@ -21,7 +21,7 @@ export const defaults = {
   srcDir: './src',
   modulePaths: {
     models: './entities/**/model.*(ts|js)',
-    scalars: './entities//scalars.*(ts|js)',
+    scalars: './entities/**/scalars.*(ts|js)',
     typeDefs: './entities/**/typeDefs.gql',
     resolvers: './entities/**/resolvers.*(ts|js)'
   }

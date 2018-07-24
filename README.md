@@ -38,6 +38,31 @@ Example folder structure:
   app.js # your druid application
 ```
 
+Example entity logic: 
+
+```js
+// User/model.js
+import { Model } from 'objection'
+
+export default class User extends Model {
+  static get tableName() {
+    return 'users'
+  }
+}
+
+// User/typeDefs.js
+type Query {
+  allUsers(): [User]!
+}
+
+// User/resolvers.js
+export const Query = {
+  async allUsers (root, args, { db }) {
+    return db.User.query()
+  }
+}
+```
+
 ## Packages
 
 There are two Druid packages: 

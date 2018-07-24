@@ -1,7 +1,7 @@
 import * as supertest from 'supertest'
 import { generateToken } from '@druidjs/app/dist/context/auth'
 
-type RequestData = {
+export type RequestData = {
   query?: string
   mutation?: string
   variables?: object

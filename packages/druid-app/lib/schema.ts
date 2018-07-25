@@ -21,7 +21,7 @@ export default function schemaLoader (options) {
   let gqlSchema
   try {
     gqlSchema = makeExecutableSchema(schema)
-  } catch (err) {
+  } catch (err) { // TODO consider throwing actual error and doing try-catch-log in testing
     console.log('Error while loading your schema' + err)
   }
   return gqlSchema

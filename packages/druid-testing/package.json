@@ -1,6 +1,6 @@
 {
   "name": "@druidjs/testing",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "main": "main.js",
   "license": "MIT",
   "files": [

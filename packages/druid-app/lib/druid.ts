@@ -4,7 +4,7 @@ import { resolveApp } from './utils'
 import * as express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import initContext from './context'
-import loadSchema from './loadSchema'
+import loadSchema from './schema'
 
 type AppOptions = {
   port?: number 
@@ -15,9 +15,10 @@ type AppOptions = {
 }
 
 export const defaults = {
-  port: 4000,
+  get appKey () {
+    return process.env.APP_KEY
+  },
   path: '/graphql',
-  appKey: null,
   srcDir: './src',
   modulePaths: {
     models: './entities/**/model.*(ts|js)',

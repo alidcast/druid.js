@@ -2,13 +2,15 @@
 
 🚧 Under Construction 🚧
 
+
+explain why you wrap existing/tested frameworks rather than creating your own ecosystem
+
+
 With Druid, you can create Node.js API completely focused on your database `enitites`.
 
 We're able to streamline this process for you by leveraging the brilliance of [Graphql](https://graphql.org/), which elimiates the need for tying together disparate routes and controllers. Instead, Druid autoloads all your `database` and `graphql` logic based on preconfigured paths. This way, we can elimate all boilerplate required to setup a Node.js API and you can focus on the logic that's unique to your application.
 
-Druid is built on top of [apolo-server](https://github.com/apollographql/apollo-server) (for responding to Graphql requests) and [objection.js](https://github.com/Vincit/objection.js/) (for querying your database).
-
-As an added benefit, we have built-in support for Authentication (Jwt) and Testing (Jest).
+As an added benefit, we have built-in support for Authentication and Testing.
 
 But anyway, enough talk, here's a brief look at how your APIs will look like going forward:
 
@@ -51,25 +53,33 @@ export default class User extends Model {
 }
 
 // User/typeDefs.js
-type Query {
-  allUsers(): [User]!
+type Mutation {
+  createUser(username: String!, password: String!): User!
+}
+
+type User {
+  id: Int! 
+  username: String! 
+  password: String!
 }
 
 // User/resolvers.js
-export const Query = {
-  async allUsers (root, args, { db }) {
-    return db.User.query()
+export const Mutation = {
+  async createUser (root, { username, password }, { db }) {
+    return db.User.query().insert({ username, password })
   }
 }
 ```
+
+Like what you're seeing? Read the [getting-started](https://github.com/alidcastano/druid.js/tree/master/packages/druid-app#getting-started) section to start using Druid!
 
 ## Packages
 
 There are two Druid packages: 
 
-- [`@druidjs/app`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-app), holds the core modules for the Druid framework. You can use this package to streamline your graphql+objection API setup.
+- [`@druidjs/app`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-app), holds the core modules for the Druid framework. You can use this package to streamline your graphql API setup.
 - [`@druidjs/testing`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-testing), holds
-testing utilities for Druid. You can use package to test graphql resolvers while keeping your database clean.
+testing utilities for Druid. You can use package to test your API while keeping your database clean.
 
 Each of the above packages holds its respective documentation inside its `README.md`.
 

@@ -42,21 +42,28 @@ const app = new Druid(connection)
 app.listen(4000)
 ```
 
-Now that you've done that, now you can create your database `models`, along with your graphql `typeDefs`/`resolvers`,will all be autoloaded by Druid. By default, all modules are found under the following glob pattern: `src/entities/**/*.{module}.{js,ts}`.
+With minimal code, your database `models`, along with your graphql `typeDefs`/`resolvers`, can now all be autoloaded for you. By default, all modules are found under the following glob pattern: `src/entities/**/*.{module}.{js,ts}`.
 
-Here's what the default, recommended folder structure would look like:
+Here's an example of the default folder structure which we highly encourage:
 
 ```
 /src
   /entities # all entities to be autoloaded by Druid 
     /User
-      /model.js
-      /resolvers.ts
-      /typeDefs.js
+      / helpers # user specific helper methods
+      / queries # user specific query methods
+      model.js
+      resolvers.js
+      scalars.js
+      typeDefs.gql
+  / mixins # model mixins
+  / helpers  # app-wide utilities
   app.js # your druid application
 ```
 
-But as advertised, Druid takes the shape of your application. So you can pass custom paths, along with other settings, as the second parameter to Druid. Here are the defaults:
+We also recommend keep only having modules autoloaded by Druid in the root of each entity. Any additional logic you can add inside folders, as shown above.
+
+If you'd like to customize the folder structure, you can pass custom paths, along with other settings, as the second parameter to Druid. Here are the defaults:
 
 ```js
 new Druid(connection, {

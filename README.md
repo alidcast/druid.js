@@ -27,7 +27,7 @@ As an example, here's the default folder structure of a simple Druid app:
 
 Unlike other Node.js frameworks, Druid isn't trying to be "the next Ruby on Rails." Node.js has its own modular, lightweight way of doing things, and Druid maintains that spirit.
 
-Druid's itself, is focused only on one job: tying together your application's `entities`. As for the application logic itself, we shamelessly delegate the heavy lifting to two great libraries:
+Druid's itself, is focused only on one job: tying together your application's `entities`. As for the application logic itself, we shamelessly delegate most of the heavy lifting to two great libraries:
 
  - [apolo-server](https://github.com/apollographql/apollo-server), for responding to Graphql requests.
  - [objection](https://github.com/Vincit/objection.js/) / [knex](http://knexjs.org), for querying your database.

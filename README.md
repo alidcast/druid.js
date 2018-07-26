@@ -29,7 +29,7 @@ Unlike other Node.js frameworks, Druid isn't trying to be "the next Ruby on Rail
 
 Druid's itself, is focused only on one job: tying together your application's `entities`. As for the application logic itself, we shamelessly delegate most of the heavy lifting to two great libraries:
 
- - [apolo-server](https://github.com/apollographql/apollo-server), for responding to Graphql requests.
+ - [apollo-server](https://github.com/apollographql/apollo-server), for responding to Graphql requests.
  - [objection](https://github.com/Vincit/objection.js/) / [knex](http://knexjs.org), for querying your database.
 
 Before you use Druid, we suggest you become famililar with the above libraries, and with Node.js ecosystem as a whole so that you can understand and appreciate why we chose the above technologies.

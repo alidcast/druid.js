@@ -1,0 +1,28 @@
+{
+  "name": "@druidjs/mixins",
+  "version": "0.2.5",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "searchAlgolia",
+    "softDeletes"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "prepublish": "npm run compile",
+    "test": "cd ../.. && npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^10.7.1",
+    "knex": "^0.15.2",
+    "objection": "^1.2.0",
+    "sqlite3": "^4.0.2",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@types/jest": "^23.3.1"
+  }
+}

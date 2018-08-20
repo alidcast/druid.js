@@ -97,6 +97,8 @@ Like what you're seeing? Read the [app setup](https://github.com/alidcastano/dru
 There are two Druid packages: 
 
 - [`@druidjs/app`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-app), holds the core modules for the Druid framework. You can use this package to streamline your Node.js+Graphql API setup.
+- [`@druidjs/mixins`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-mixins), holds
+the model mixins for Druid. You can use package to enhance your Objection.js models with commonly used functionality.
 - [`@druidjs/testing`](https://github.com/alidcastano/druid.js/tree/master/packages/druid-testing), holds
 testing utilities for Druid. You can use package to test your API while keeping your database clean.
 

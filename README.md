@@ -7,11 +7,11 @@
 
 ## Introduction 
 
-Druid streamlines the process of creating a Node.js API, so that you can focus on the logic that's unique to your application.
+Druid streamlines the process of creating Node.js+Graphql applications.
 
 We're able to remove all boilerplate for you, because we leverage the elegance of [Graphql](https://graphql.org/), which dispenses with the need for tying together disparate routes and controllers. Instead, a Druid application is composed of `entities` (a database `model`, along with its graphql `typeDefs`/`resolvers`), which Druid autoloads for you based on preconfigured paths. 
 
-We call Druid a "shapeshifting" framework, because it takes the shape of the entities that compose your API.
+We call Druid a "shapeshifting" framework, because it takes the shape of the `entities` that compose your API.
 
 As an example, here's the default folder structure of a simple Druid app:
 
@@ -25,14 +25,7 @@ As an example, here's the default folder structure of a simple Druid app:
   app.js # your druid application
 ```
 
-Unlike other Node.js frameworks, Druid isn't trying to be "the next Ruby on Rails." Node.js has its own modular, lightweight way of doing things, and Druid maintains that spirit.
-
-Druid's itself, is focused only on one job: tying together your application's `entities`. As for the application logic itself, we shamelessly delegate the heavy lifting to two great libraries:
-
- - [apolo-server](https://github.com/apollographql/apollo-server), for responding to Graphql requests.
- - [objection](https://github.com/Vincit/objection.js/) / [knex](http://knexjs.org), for querying your database.
-
-Before you use Druid, we suggest you become famililar with the above libraries, and with Node.js ecosystem as a whole so that you can understand and appreciate why we chose the above technologies.
+Druid itself, is primarily focused on tying together your applications `entities`. As for the application logic itself, we shamelessly delegate most of the heavy lifting to two great libraries: [knex](http://knexjs.org)/[objection](https://github.com/Vincit/objection.js/) (for querying your database) and [apollo-server](https://github.com/apollographql/apollo-server) (for responding to Graphql requests). Before you use Druid, we suggest you become famililar with the above two technologies.
 
 But anyway, enough talk, here's a brief look at how your API will look like going forward:
 

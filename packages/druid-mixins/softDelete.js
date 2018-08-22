@@ -1,1 +1,1 @@
-module.exports = require('./softDelete')
+module.exports = require('./dist/softDelete')

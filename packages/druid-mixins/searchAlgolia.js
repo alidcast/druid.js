@@ -1,1 +1,1 @@
-module.exports = require('./searchAlgolia')
+module.exports = require('./dist/searchAlgolia')

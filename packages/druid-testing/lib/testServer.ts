@@ -47,11 +47,13 @@ export class TestServer {
 
 export default async function createTestServer (userOptions = {}) {
   const server = new TestServer() 
-  await server.init(userOptions)
+  await server.init(userOptions) // try-catch block here, process.exit()
   return server 
 }
 
 function getDruidInstance (userOptions) {
   const options = normalizeOptions(userOptions)
-  return require(join(options.srcDir, 'app')).default 
+  const app = require(join(options.srcDir, 'app')).default 
+  app.options = { ...app.options, ...options }
+  return app
 }

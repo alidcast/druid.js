@@ -1,11 +1,12 @@
 {
   "name": "@druidjs/testing",
-  "version": "0.3.8",
+  "version": "0.4.2",
   "main": "main.js",
   "license": "MIT",
   "files": [
     "dist",
-    "main.js"
+    "main.js",
+    "jest.js"
   ],
   "publishConfig": {
     "access": "public"

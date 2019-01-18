@@ -25,11 +25,16 @@ export default function initProxyRequest (app) {
   return async function request (
     { query, mutation, variables, headers = {} }: RequestData, returnBody: boolean = true
   ) {
-  
+    
+    // Queries can be defined as strings or via gql tags, 
+    // in the latter case we have to get the source from the query ast.
+    let queryBody = (query || mutation) as any
+    if (typeof queryBody !== 'string' && queryBody.loc) queryBody = queryBody.loc.source.body
+
     let request = agent
       .post(API_ENDPOINT)
       .set({ Accept: 'application/json', ...headers })
-      .send({ query: query || mutation, variables })
+      .send({ query: queryBody, variables })
   
     if (returnBody) request = request.then(res => res.body)
   

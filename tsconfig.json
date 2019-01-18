@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "esnext.asynciterable"],
     "target": "es2015",
-    "module": "commonjs"
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   }
 }

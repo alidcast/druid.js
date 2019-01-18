@@ -1,22 +1,20 @@
 {
-  "name": "druidjs",
+  "name": "@druidjs/monorepo",
+  "private": true,
   "license": "MIT",
   "repository": "https://github.com/alidcastano/druid.js",
   "author": "Alid Castano",
-  "files": [
-    "dist",
-    "main.js"
+  "npmClient": "yarn",
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "compile": "tsc",
-    "prepublish": "npm run compile && npm version patch"
+    "compile": "lerna run compile",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "test": "lerna run test"
   },
   "devDependencies": {
-    "apollo-server": "^2.0.0"
-  },
-  "dependencies": {
-    "fast-glob": "^2.2.2",
-    "jsonwebtoken": "^8.3.0",
-    "merge-graphql-schemas": "^1.5.3"
+    "lerna": "^3.10.5"
   }
 }

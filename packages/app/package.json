@@ -14,11 +14,8 @@
     "compile": "tsc",
     "prepublish": "npm run compile"
   },
-  "peerDependencies": {
-    "apollo-server": "^2.0.0"
-  },
   "dependencies": {
-    "apollo-server-express": "^2.0.0",
+    "apollo-server-express": "^2.4.0-alpha.1",
     "connect": "^3.6.6",
     "dotenv": "^6.0.0",
     "dotenv-flow": "^0.1.0-beta.3",
@@ -28,7 +25,6 @@
     "merge-graphql-schemas": "^1.5.3"
   },
   "devDependencies": {
-    "apollo-server": "^2.0.0",
     "graphql": "^0.13.2",
     "knex": "^0.15.2",
     "objection": "^1.2.0",

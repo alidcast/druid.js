@@ -1,8 +1,10 @@
-import { findFiles, importFile, getDirNameFromPath } from '../utils'
+import { findFiles, importFile, getDirNameFromPath } from '@druidjs/path-utils'
+
+const dev = process.env.NODE_ENV !== 'production'
 
 let models 
-export default function initDb (connection, options) {
-  models = (process.env.NODE_ENV === 'production' && !!models) ? models : loadModels(connection, options.modulePaths.models)
+export function initDb(connection, { modulePaths }) {
+  models = (!dev && !!models) ? models : loadModels(connection, modulePaths.models)
 
   return {
     $connection: connection,
@@ -21,6 +23,7 @@ function loadModels (connection, modelsPath: string) {
       modelClass = Model.bindTransaction(connection)
     } catch (err) {
       console.log('Error while loading models' + err)
+      throw (err)
     }
   
     models[modelName] = modelClass

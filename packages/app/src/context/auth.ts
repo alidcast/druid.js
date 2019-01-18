@@ -1,11 +1,12 @@
 import * as jwt from 'jsonwebtoken'
 import { AuthenticationError, ForbiddenError } from 'apollo-server'
 
-const secretKey = (key = null) => key || process.env.APP_KEY
+function getAppKey() {
+  return process.env.APP_KEY
+}
 
-export default function initAuth (req, options, db) {
-  const getUser = initGetAuthUser(req, options, db)
-
+export function initAuth({ req }, db) {
+  const getUser = initGetAuthUser(req, db)
   return {
     getUser,
     getUserId: () => getUser().then(user => user.id),
@@ -14,7 +15,7 @@ export default function initAuth (req, options, db) {
   }
 }
 
-export function initGetAuthUser (req, options, db) {
+function initGetAuthUser (req, db) {
   return async function getAuthUser (shouldFail = true) {
     const { authorization } = req.headers
     const noAuthorization = !authorization || authorization.indexOf('Bearer') === -1
@@ -27,7 +28,7 @@ export function initGetAuthUser (req, options, db) {
     let userId
     try {
       const token = authorization.replace('Bearer ', '')
-      userId = jwt.verify(token, secretKey(options.appKey)).userId
+      userId = jwt.verify(token, getAppKey()).userId
     } catch (err) {
       throw new ForbiddenError('You are not authorized.')
     }
@@ -41,5 +42,5 @@ export function initGetAuthUser (req, options, db) {
 }
 
 export function generateToken (userId) {
-  return jwt.sign({ userId }, secretKey())
+  return jwt.sign({ userId }, getAppKey())
 }

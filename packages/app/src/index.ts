@@ -1,5 +1,2 @@
-import druid from './druid'
-
-export default druid
-
+export * from './druid'
 export * from './helpers'

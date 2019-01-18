@@ -1,0 +1,19 @@
+{
+  "name": "@druidjs/path-utils",
+  "version": "0.3.7",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "prepublish": "npm run compile"
+  },
+  "dependencies": {
+    "fast-glob": "^2.2.2"
+  }
+}

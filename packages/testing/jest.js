@@ -1,18 +1,17 @@
-const { createTestServer, withAuthHeader } = require('./dist')
+const { createTestServer, getAuthHeader } = require('./dist')
 
 let server
 
+function getTestServer () {
+  return server 
+}
+
 beforeEach(async () => { 
-  try {
-    server = await createTestServer()
-  } catch (err) {
-    console.log(`Error starting server: ${err}`)
-    process.exit()
-  }
+  server = await createTestServer()
 })
 
 afterEach(async () => { 
-  await server.rollback() 
+  await server.cleanup()
 })
 
 afterAll(async () => { 
@@ -20,8 +19,6 @@ afterAll(async () => {
 })
 
 module.exports = {
-  getTestServer () {
-    return server 
-  },
-  withAuthHeader
+  getTestServer,
+  getAuthHeader
 }

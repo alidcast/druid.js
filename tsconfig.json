@@ -4,6 +4,7 @@
     "target": "es2015",
     "module": "commonjs",
     "noImplicitAny": false,
+    "allowSyntheticDefaultImports": false,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   }

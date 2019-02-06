@@ -1,6 +1,7 @@
 import { createTestClient } from 'apollo-server-testing'
 import { transaction } from 'objection'
 import createContext from '@druidjs/app/dist/context'
+import { initDb } from '@druidjs/app/dist/context/db'
 import { generateToken } from '@druidjs/app/dist/context/auth'
 import { resolveApp } from '@druidjs/path-utils'
 
@@ -15,6 +16,8 @@ export async function createTestServer() {
   const { query, mutate } = createTestClient(app.apolloServer)
 
   const testServer = {
+    db: initDb(trx, app.options),
+
     setHeaders(headers) {
       mockCtx.req.headers = headers
     },

@@ -13,7 +13,16 @@ export async function createTestServer() {
   const createMockContext = (_, __, options) => createContext(mockCtx, trx, options)
   app.initialize(createMockContext)
 
-  const { query, mutate } = createTestClient(app.apolloServer)
+  const client = createTestClient(app.apolloServer)
+
+  const enhanceRequest = (method) => async (args, { fail = false } = {}) => {
+    const result = await client[method](args)
+    if (result.errors && !fail) console.log(result.errors)
+    return result
+  }
+
+  const query = enhanceRequest('query')
+  const mutate = enhanceRequest('mutate')
 
   const testServer = {
     db: initDb(trx, app.options),

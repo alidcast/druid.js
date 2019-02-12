@@ -15,9 +15,9 @@ export async function createTestServer() {
 
   const client = createTestClient(app.apolloServer)
 
-  const enhanceRequest = (method) => async (args, { fail = false } = {}) => {
+  const enhanceRequest = (method) => async (args, { silent = false } = {}) => {
     const result = await client[method](args)
-    if (result.errors && !fail) console.log(result.errors)
+    if (result.errors && !silent) console.log(result.errors)
     return result
   }
 
@@ -32,13 +32,13 @@ export async function createTestServer() {
     },
     query,
     mutate,
-    authQuery(userId: number, queryArgs) {
+    authQuery(userId: number, queryArgs, options) {
       testServer.setHeaders(getAuthHeader(userId))
-      return query(queryArgs)
+      return query(queryArgs, options)
     },
-    authMutate(userId: number, mutateArgs) {
+    authMutate(userId: number, mutateArgs, options) {
       testServer.setHeaders(getAuthHeader(userId))
-      return mutate(mutateArgs)
+      return mutate(mutateArgs, options)
     },
     async cleanup() {
       testServer.setHeaders({})

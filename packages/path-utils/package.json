@@ -15,5 +15,8 @@
   },
   "dependencies": {
     "fast-glob": "^2.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
   }
 }

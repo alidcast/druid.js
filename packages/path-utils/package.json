@@ -1,6 +1,6 @@
 {
   "name": "@druidjs/path-utils",
-  "version": "0.3.7",
+  "version": "0.5.0",
   "main": "dist/index.js",
   "license": "MIT",
   "files": [

@@ -10,6 +10,7 @@ type AppOptions = {
   srcDir?: string
   modulePaths?: any,
   context?: (ctx: any) => object
+  apolloOptions?: any
 }
 
 export const defaults = {
@@ -20,6 +21,10 @@ export const defaults = {
     scalars: './entities/**/scalars.*(ts|js)',
     typeDefs: './entities/**/typeDefs.gql',
     resolvers: './entities/**/resolvers.*(ts|js)'
+  },
+  apolloOptions: {
+    introspection: process.env.NODE_ENV !== 'production',
+    playground: process.env.NODE_ENV !== 'production',
   }
 }
 
@@ -48,7 +53,8 @@ export class Druid {
         req,
         ...(typeof options.context === 'function' ? options.context(req) : {}),
         ...(context({ req }, connection, options))
-      })
+      }),
+      ...options.apolloOptions
     })
     this.apolloServer.applyMiddleware({ app: this.instance, path: options.path })
   }

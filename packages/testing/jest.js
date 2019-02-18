@@ -7,7 +7,11 @@ function getTestServer () {
 }
 
 beforeEach(async () => { 
-  server = await createTestServer()
+  try {
+    server = await createTestServer()
+  } catch(err) {
+    console.log(err)
+  }
 })
 
 afterEach(async () => { 

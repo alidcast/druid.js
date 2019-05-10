@@ -14,15 +14,16 @@
     "prepublish": "npm run compile"
   },
   "dependencies": {
-    "apollo-server": "^2.3.1",
-    "apollo-server-express": "^2.3.1",
+    "apollo-server": "2.3.1",
+    "apollo-server-express": "2.3.1",
     "connect": "^3.6.6",
     "dotenv": "^6.0.0",
     "dotenv-flow": "^0.1.0-beta.3",
     "express": "^4.16.3",
     "fast-glob": "^2.2.2",
     "jsonwebtoken": "^8.3.0",
-    "merge-graphql-schemas": "^1.5.3"
+    "merge-graphql-schemas": "^1.5.3",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
     "graphql": "^0.13.2",
